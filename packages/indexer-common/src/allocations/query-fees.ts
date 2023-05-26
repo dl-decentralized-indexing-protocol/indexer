@@ -65,6 +65,7 @@ export interface AllocationReceiptCollectorOptions {
   voucherRedemptionThreshold: BigNumber
   voucherRedemptionBatchThreshold: BigNumber
   voucherRedemptionMaxBatchSize: number
+  protocolNetwork: string
 }
 
 export interface ReceiptCollector {
@@ -85,6 +86,7 @@ export class AllocationReceiptCollector implements ReceiptCollector {
   private voucherRedemptionThreshold: BigNumber
   private voucherRedemptionBatchThreshold: BigNumber
   private voucherRedemptionMaxBatchSize: number
+  private protocolNetwork: string
 
   constructor({
     logger,
@@ -96,12 +98,14 @@ export class AllocationReceiptCollector implements ReceiptCollector {
     voucherRedemptionThreshold,
     voucherRedemptionBatchThreshold,
     voucherRedemptionMaxBatchSize,
+    protocolNetwork,
   }: AllocationReceiptCollectorOptions) {
     this.logger = logger.child({ component: 'AllocationReceiptCollector' })
     this.metrics = registerReceiptMetrics(metrics)
     this.transactionManager = transactionManager
     this.models = models
     this.allocationExchange = allocationExchange
+    this.protocolNetwork = protocolNetwork
 
     // Process Gateway routes
     const gatewayUrls = processGatewayRoutes(gatewayEndpoint)
@@ -137,6 +141,7 @@ export class AllocationReceiptCollector implements ReceiptCollector {
               this.models,
               allocation,
               transaction,
+              this.protocolNetwork,
             )
             await summary.save()
           }
@@ -453,6 +458,7 @@ export class AllocationReceiptCollector implements ReceiptCollector {
           this.models,
           toAddress(voucher.allocation),
           transaction,
+          this.protocolNetwork,
         )
         summary.collectedFees = BigNumber.from(summary.collectedFees)
           .add(voucher.amount)
@@ -466,6 +472,7 @@ export class AllocationReceiptCollector implements ReceiptCollector {
             allocation: toAddress(voucher.allocation),
             amount: voucher.amount,
             signature: voucher.signature,
+            protocolNetwork: this.protocolNetwork,
           },
           transaction,
         })
@@ -526,6 +533,7 @@ export class AllocationReceiptCollector implements ReceiptCollector {
               this.models,
               toAddress(voucher.allocation),
               transaction,
+              this.protocolNetwork,
             )
             summary.withdrawnFees = BigNumber.from(summary.withdrawnFees)
               .add(voucher.amount)
