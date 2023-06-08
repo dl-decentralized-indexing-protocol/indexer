@@ -30,9 +30,9 @@ An example:
 The accepted `graph-node` version range is also specificied, with an "upgrade window" from the previous version.
 
 ```
-graph-node: ≥0.30.0 <0.31.0
-valid from: 787
-upgrade window: 795
+graph-node: ≥0.31.0 <0.32.0
+valid from: 891
+upgrade window: 900
 ```
 
 

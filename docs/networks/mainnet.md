@@ -82,8 +82,8 @@ option can be used.
 
 ```
 graph-node: ≥0.31.0 <0.32.0
-valid from: 874
-upgrade window: 890
+valid from: 891
+upgrade window: 900
 ```
 
 | Subgraph Feature         | Aliases | Implemented | Experimental | Query Arbitration | Indexing Arbitration | Indexing Rewards |
