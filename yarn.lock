@@ -1044,9 +1044,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@graphprotocol/indexer-agent@workspace:packages/indexer-agent"
   dependencies:
-    "@graphprotocol/common-ts": 2.0.1
-    "@graphprotocol/indexer-common": ^0.20.16
+    "@graphprotocol/indexer-common": "*"
     "@thi.ng/heaps": ^1.3.1
+    "@tokene-q/common-ts": ^2.0.4
     "@types/bs58": 4.0.1
     "@types/isomorphic-fetch": 0.0.36
     "@types/jest": 27.4.1
@@ -1059,6 +1059,8 @@ __metadata:
     axios: 0.26.1
     bs58: 5.0.0
     delay: ^5.0.0
+    dotenv: ^16.0.3
+    dotenv-cli: ^7.2.1
     eslint: 8.13.0
     eslint-config-prettier: ^8.5.0
     ethers: 5.7.0
@@ -1163,38 +1165,6 @@ __metadata:
     typescript: 4.6.3
   languageName: unknown
   linkType: soft
-
-"@graphprotocol/indexer-common@npm:^0.20.16":
-  version: 0.20.16
-  resolution: "@graphprotocol/indexer-common@npm:0.20.16"
-  dependencies:
-    "@graphprotocol/common-ts": 2.0.1
-    "@graphprotocol/cost-model": 0.1.16
-    "@thi.ng/heaps": 1.2.38
-    "@urql/core": 2.4.4
-    "@urql/exchange-execute": 1.2.2
-    axios: 0.26.1
-    body-parser: 1.19.1
-    cors: 2.8.5
-    ethers: 5.7.0
-    evt: 1.10.1
-    express: 4.17.3
-    fastify: 3.25.0
-    graphql: 16.3.0
-    graphql-tag: 2.12.6
-    jayson: 3.6.6
-    morgan: 1.10.0
-    ngeohash: 0.6.3
-    p-filter: 2.1.0
-    p-map: 4.0.0
-    p-reduce: 2.1.0
-    p-retry: 4.6.1
-    p-timeout: 4.1.0
-    sequelize: 6.19.0
-    ts-custom-error: ^3.2.0
-  checksum: 206facb5555b6003f23e6254e67ea72fea1c5168c63cf1cb4c9fb51e0ed4c88def7735c73a87101560c0d1f7128e1f7f60b218b574a628058b08cafa55d09f61
-  languageName: node
-  linkType: hard
 
 "@graphprotocol/indexer-native@*, @graphprotocol/indexer-native@workspace:packages/indexer-native":
   version: 0.0.0-use.local
@@ -5620,9 +5590,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001503":
-  version: 1.0.30001504
-  resolution: "caniuse-lite@npm:1.0.30001504"
-  checksum: 0256f8ef2f5d6d1559198967d7325952e6451e79ff1b92d3d6ba1ec43efedf49fcd3fbb0735ebed0bfd96c6c6a49730e169535e273c60795d23ef25bd37e3e3d
+  version: 1.0.30001505
+  resolution: "caniuse-lite@npm:1.0.30001505"
+  checksum: 994a48945d797603e04641aa54d2368d1405feea249dfc51a1dbfc39cbaf51ab0df8ec03c944448289597bd7046ab5dbc6dff7ee3cbfec0e70a83b164395e805
   languageName: node
   linkType: hard
 
@@ -6728,9 +6698,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.431":
-  version: 1.4.433
-  resolution: "electron-to-chromium@npm:1.4.433"
-  checksum: 106e3bc2fb4ee5eddd4b141363900d5cd731c7579aa6bebd02509c52d6b598a1684aba1b75791e838dfa54dec0a40ddd17ea01199041ea46310aafb206395e43
+  version: 1.4.434
+  resolution: "electron-to-chromium@npm:1.4.434"
+  checksum: b35ef09571167e65ba867f7d7c3fc3ed7696ccd82313c172fd400e8ada1568a9f310791854ff0b57abbe8869abacae71d32b2f9e9460b2f4ef1eff86661ad075
   languageName: node
   linkType: hard
 
@@ -12127,9 +12097,9 @@ __metadata:
   linkType: hard
 
 "pirates@npm:^4.0.4":
-  version: 4.0.5
-  resolution: "pirates@npm:4.0.5"
-  checksum: c9994e61b85260bec6c4fc0307016340d9b0c4f4b6550a957afaaff0c9b1ad58fbbea5cfcf083860a25cb27a375442e2b0edf52e2e1e40e69934e08dcc52d227
+  version: 4.0.6
+  resolution: "pirates@npm:4.0.6"
+  checksum: 46a65fefaf19c6f57460388a5af9ab81e3d7fd0e7bc44ca59d753cb5c4d0df97c6c6e583674869762101836d68675f027d60f841c105d72734df9dfca97cbcc6
   languageName: node
   linkType: hard
 
