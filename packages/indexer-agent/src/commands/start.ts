@@ -164,7 +164,7 @@ export default {
       .option('epoch-subgraph-endpoint', {
         description: 'Endpoint to query the epoch block oracle subgraph from',
         type: 'string',
-        required: true,
+        required: false,
         group: 'Protocol',
       })
       .option('index-node-ids', {
@@ -557,7 +557,8 @@ export default {
 
     const indexerAddress = toAddress(argv.indexerAddress)
 
-    const epochSubgraph = await EpochSubgraph.create(argv.epochSubgraphEndpoint)
+    let epochSubgraph
+    if(argv.epochSubgraphEndpoint) epochSubgraph = await EpochSubgraph.create(argv.epochSubgraphEndpoint)
 
     const networkMonitor = new NetworkMonitor(
       resolveChainId(networkMeta.chainId),

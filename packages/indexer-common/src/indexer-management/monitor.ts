@@ -43,7 +43,7 @@ export class NetworkMonitor {
     private indexingStatusResolver: IndexingStatusResolver,
     private networkSubgraph: NetworkSubgraph,
     private ethereum: providers.BaseProvider,
-    private epochSubgraph: EpochSubgraph,
+    private epochSubgraph?: EpochSubgraph,
   ) {}
 
   async currentEpochNumber(): Promise<number> {
@@ -563,8 +563,46 @@ export class NetworkMonitor {
     return this.currentEpoch(this.networkCAIPID)
   }
 
+  async epochManagerCurrentStartBlock(network: string): Promise<NetworkEpoch> {
+    const epochNumber = await this.currentEpochNumber()
+    const startBlockNumber = (
+        await this.contracts.epochManager.currentEpochBlock()
+    ).toNumber()
+    const startBlockHash = (await this.ethereum.getBlock(startBlockNumber)).hash
+    const result = await this.networkSubgraph.query(
+        gql`
+        query meta {
+          _meta {
+            block {
+              number
+            }
+          }
+        }
+      `
+    )
+    const latestBlock = result.data._meta.block.number
+    return {
+      networkID: network,
+      epochNumber,
+      startBlockNumber,
+      startBlockHash,
+      latestBlock,
+    }
+  }
+
   async currentEpoch(networkID: string): Promise<NetworkEpoch> {
     const networkAlias = resolveChainAlias(networkID)
+
+    if (!this.epochSubgraph) {
+      if (networkID == this.networkCAIPID) {
+        const result = await this.epochManagerCurrentStartBlock(networkID)
+        return result
+      }
+      throw indexerError(
+          IndexerErrorCode.IE069,
+          `Epoch subgraph not available for indexed chains`,
+      )
+    }
 
     const queryEpochSubgraph = async () => {
       // We know it is non-null because of the check above for a null case that will end execution of fn if true
